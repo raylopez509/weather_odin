@@ -26,11 +26,15 @@ function getWeatherButton(event) {
 }
 
 async function displayWeather(data) {
-  const d = await data;
   const container = document.querySelector('#weather-container');
   while(container.firstChild) {
     container.removeChild(container.lastChild)
   }
+  const loading = document.createElement('div');
+  loading.textContent = "Loading...";
+  container.append(loading);
+  const d = await data;
+  container.removeChild(loading);
   const location = document.createElement('div');
   const temperature = document.createElement('div');
   const conditions = document.createElement('div');
